@@ -2,11 +2,20 @@ import Card from '@material-ui/core/Card';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from "@material-ui/core/styles";
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+
 import React, { useState } from 'react';
 
-let possibleShoppingItems = [
+const possibleShoppingItems = [
   {
-    'name': 'test'
+    'name': 'pasta'
+  },
+  {
+    'name': 'milk'
+  },
+  {
+    'name': 'other'
   }
 ];
 
@@ -23,9 +32,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const RequestForm = () => {
+const RequestForm = props => {
   const classes = useStyles();
   const [orderItems, setOrderItems] = useState(['']);
+  const [possibleShoppingItemChosen, choosePossibleItem] = useState({});
+
+  const handleChange = event => {
+    choosePossibleItem(event.target.value);
+  };
 
   return (
     <div className="request-form-container">
@@ -52,15 +66,28 @@ const RequestForm = () => {
             />
             <div className="row">
               <h3>Order Items</h3>
-              {orderItems.map((orderItem, i) =>
-                (<TextField
-                    className={classes.textInput}
-                    name={`orderItem${i+1}`}
-                    type="text"
-                    value={orderItem}
-                    label="Any item that is accessible"
-                />)
-              )}
+              {orderItems.map((orderItem, i) => {
+                return (<div>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={possibleShoppingItemChosen}
+                    onChange={handleChange}
+                  >
+                    {possibleShoppingItems.map((possibleShoppingItem, index) => {
+                      return (<MenuItem value={possibleShoppingItem.name}>{possibleShoppingItem.name}</MenuItem>)
+                    })}
+                  </Select>
+
+                  {possibleShoppingItemChosen == true && <TextField
+                      className={classes.textInput}
+                      name={`orderItem${i+1}`}
+                      type="text"
+                      value={orderItem}
+                      label="Any item that is accessible"
+                  />}
+                </div>);
+              })}
               <Button className={classes.buttonAddItem} color="primary" onClick={() => setOrderItems([...orderItems, ""])}> Add Item </Button>
             </div>
             <Button className={classes.button} type="submit" color="primary"> Submit </Button>
