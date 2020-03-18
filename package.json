@@ -8,6 +8,9 @@
     "start": "next start"
   },
   "dependencies": {
+    "@material-ui/core": "^4.9.5",
+    "@material/card": "^5.1.0",
+    "material-ui": "^0.20.2",
     "next": "9.3.1",
     "react": "16.13.0",
     "react-dom": "16.13.0"
