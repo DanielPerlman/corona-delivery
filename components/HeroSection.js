@@ -2,7 +2,7 @@
 const HeroSection = () => (
   <div className="hero-section">
     <h1 className="title">
-      Get food delivered right to your doorstep and help at the same time
+      Get food delivered right to your doorstep and help at the same time 
     </h1>
     <style jsx>{`
       .hero-section {

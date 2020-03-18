@@ -4,6 +4,12 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useState } from 'react';
 
+let possibleShoppingItems = [
+  {
+    'name': 'test'
+  }
+];
+
 const useStyles = makeStyles(theme => ({
   textInput: {
     width: "100%",
@@ -26,31 +32,31 @@ const RequestForm = () => {
       <Card>
         <form className="request-info">
             <h2>How can we help?</h2>
-            <TextField 
+            <TextField
                 className={classes.textInput}
-                name="email" 
-                type="email" 
+                name="email"
+                type="email"
                 label="Email"
             />
-            <TextField 
+            <TextField
                 className={classes.textInput}
-                name="adress" 
+                name="adress"
                 type="adress"
-                label="Location" 
+                label="Location"
             />
-            <TextField 
+            <TextField
                 className={classes.textInput}
-                name="phoneNumber" 
-                type="text" 
+                name="phoneNumber"
+                type="text"
                 label="Phone"
             />
             <div className="row">
               <h3>Order Items</h3>
               {orderItems.map((orderItem, i) =>
-                (<TextField 
+                (<TextField
                     className={classes.textInput}
-                    name={`orderItem${i+1}`} 
-                    type="text" 
+                    name={`orderItem${i+1}`}
+                    type="text"
                     value={orderItem}
                     label="Any item that is accessible"
                 />)
@@ -60,9 +66,9 @@ const RequestForm = () => {
             <Button className={classes.button} type="submit" color="primary"> Submit </Button>
         </form>
       </Card>
-      
+
       <style jsx>{`
-      
+
         .request-form-container {
           margin-top: 50px;
         }
@@ -72,13 +78,13 @@ const RequestForm = () => {
           display: flex;
           flex-direction: column;
         }
-        
+
         .row {
           margin: 20px;
           display: flex;
           flex-direction: column;
         }
-        
+
         .row h3 {
           text-align: center;
         }
