@@ -6,8 +6,9 @@ import UserInfoSection from '~/components/UserInfoSection'
 const Home = () => (
   <div className="container">
     <Head>
-      <title>Corona Delivery</title>
+      <title>A Helping Ride</title>
       <link rel="icon" href="/favicon.ico" />
+      <link href="https://fonts.googleapis.com/css?family=Baloo+2|Fira+Sans&display=swap" rel="stylesheet" />
     </Head>
 
     <main>
@@ -35,6 +36,7 @@ const Home = () => (
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
+        padding-bottom: 50px;
       }
 
       footer {
@@ -150,8 +152,59 @@ const Home = () => (
       body {
         padding: 0;
         margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-          Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+        font-family: Baloo 2;
+        max-width: 100vw;
+        overflow-x: hidden;
+      }
+
+      h1 {
+          font-size: 4rem;
+          line-height: 1.232
+      }
+
+      h2 {
+          font-size: 2.8rem;
+          line-height: 1.2992
+      }
+
+      h3 {
+          font-size: 2.2rem;
+          line-height: 1.3327999999999998
+      }
+
+      h4 {
+          font-size: 1.2rem;
+          line-height: 1.3887999999999998
+      }
+
+      @media screen and (max-width: 767px ) {
+          html,body {
+              font-size:16px
+          }
+
+          h1 {
+              font-size: 2.5rem;
+              line-height: 1.3159999999999998
+          }
+
+          h2 {
+              font-size: 2.1rem;
+              line-height: 1.3383999999999998
+          }
+
+          h3 {
+              font-size: 1.8rem;
+              line-height: 1.3552
+          }
+
+          h4 {
+              font-size: 1.3rem;
+              line-height: 1.3832
+          }
+      }
+      
+      h1,h2,h3,h4,h5,h6 {
+        font-family: Fira Sans;
       }
 
       * {
@@ -161,6 +214,7 @@ const Home = () => (
       .button {
         background: #176574 !important;
         color: #f3d0da !important;
+        padding: 10px !important;
       }
     `}</style>
   </div>

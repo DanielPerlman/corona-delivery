@@ -1,34 +1,53 @@
 
 const HeroSection = () => (
   <div className="hero-section">
+    <img src="/assets/hero-background.jpg" />
     <div className="hero-text-section">
-      <h1 className="title">
+      <h3 className="title">
         A Helping Ride
-      </h1>
-      <h2 className="subtitle">
+      </h3>
+      <h4 className="subtitle">
         We're in this together
-      </h2>
+      </h4>
     </div>
     <style jsx>{`
       .hero-section {
         width: 100vw;
-        height: 80vh;
-        background: url(/assets/hero-background.jpg);
-        background-size: cover;
+        height: 70vh;
         position: relative;
       }
 
-      @media only screen and (max-width: 600px) {
-        .hero-section {
-          height: 50vh;
-        }
+      .hero-section img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
       }
 
       .hero-text-section {
         position: absolute;
         bottom: 100px;
-        left: 0;
+        left: 50px;
         padding: 10px;
+      }
+
+      @media only screen and (max-width: 600px) {
+        .hero-section {
+          height: 50vh;
+          background: url(/assets/hero-background-mobile.jpg);
+          background-position: center;
+          background-size: cover;
+        }
+        .hero-section img {
+          display: none;
+        }
+        .hero-text-section {
+          bottom: 46px;
+          left: 0px;
+        }
       }
 
       .title {
@@ -43,7 +62,6 @@ const HeroSection = () => (
         font-weight: 300;
         margin: 0;
         width: 150px;
-        line-height: 26px;
         margin-top: 20px;
       }
     `}</style>
