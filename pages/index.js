@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import RequestForm from '~/components/RequestForm'
 import HeroSection from '~/components/HeroSection'
+import UserInfoSection from '~/components/UserInfoSection'
 
 const Home = () => (
   <div className="container">
@@ -11,6 +12,7 @@ const Home = () => (
 
     <main>
       <HeroSection />
+      <UserInfoSection />
       <RequestForm />
     </main>
 
@@ -154,6 +156,11 @@ const Home = () => (
 
       * {
         box-sizing: border-box;
+      }
+
+      .button {
+        background: #176574 !important;
+        color: #f3d0da !important;
       }
     `}</style>
   </div>

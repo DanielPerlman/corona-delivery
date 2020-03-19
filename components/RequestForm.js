@@ -21,8 +21,16 @@ const possibleShoppingItems = [
 
 const useStyles = makeStyles(theme => ({
   textInput: {
-    width: "100%",
     marginTop: "10px",
+    height: '30px'
+  },
+  textInputItem: {
+    width: `calc(100% - 100px)`,
+    marginLeft: '10px'
+  },
+  select: {
+    height: '48px',
+    width: '90px'
   },
   button: {
     margin: 'auto'
@@ -35,15 +43,15 @@ const useStyles = makeStyles(theme => ({
 const RequestForm = props => {
   const classes = useStyles();
   const [orderItems, setOrderItems] = useState(['']);
-  const [possibleShoppingItemChosen, choosePossibleItem] = useState({});
+  const [possibleShoppingItemsChosen, choosePossibleItems] = useState({});
 
-  const handleChange = event => {
-    choosePossibleItem(event.target.value);
+  const handleChange = (value, i) => {
+
+    choosePossibleItems({...possibleShoppingItemsChosen, [i]: value});
   };
-
   return (
     <div className="request-form-container">
-      <Card>
+      <Card className={classes.card}>
         <form className="request-info">
             <h2>How can we help?</h2>
             <TextField
@@ -69,19 +77,19 @@ const RequestForm = props => {
               {orderItems.map((orderItem, i) => {
                 return (<div>
                   <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={possibleShoppingItemChosen}
-                    onChange={handleChange}
+                    value={possibleShoppingItemsChosen[i]}
+                    onChange={(event) => handleChange(event.target.value, i)}
+                    className={classes.select}
                   >
                     {possibleShoppingItems.map((possibleShoppingItem, index) => {
                       return (<MenuItem value={possibleShoppingItem.name}>{possibleShoppingItem.name}</MenuItem>)
                     })}
                   </Select>
 
-                  {possibleShoppingItemChosen == true && <TextField
-                      className={classes.textInput}
+                  {possibleShoppingItemsChosen[i] == 'other' && <TextField
+                      className={classes.textInputItem}
                       name={`orderItem${i+1}`}
+                      key={`o${i}`}
                       type="text"
                       value={orderItem}
                       label="Any item that is accessible"
@@ -97,10 +105,12 @@ const RequestForm = props => {
       <style jsx>{`
 
         .request-form-container {
+          margin: auto;
           margin-top: 50px;
+          width: 90%;
         }
+
         .request-info {
-          width: 50vw;
           padding: 20px;
           display: flex;
           flex-direction: column;
