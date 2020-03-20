@@ -3,12 +3,12 @@ const HeroSection = () => (
   <div className="hero-section">
     <img src="/assets/hero-background.jpg" />
     <div className="hero-text-section">
-      <h3 className="title">
+      <h2 className="title">
         A Helping Ride
-      </h3>
-      <h4 className="subtitle">
+      </h2>
+      <h3 className="subtitle">
         We're in this together
-      </h4>
+      </h3>
     </div>
     <style jsx>{`
       .hero-section {
@@ -34,6 +34,21 @@ const HeroSection = () => (
         padding: 10px;
       }
 
+      .title {
+        text-align: center;
+        color: black;
+        font-weight: normal;
+        text-transform: uppercase;
+        margin: 0;
+      }
+
+      .subtitle {
+        font-weight: 300;
+        margin: 0;
+        width: 250px;
+        margin-top: 20px;
+      }
+
       @media only screen and (max-width: 600px) {
         .hero-section {
           height: 50vh;
@@ -48,21 +63,9 @@ const HeroSection = () => (
           bottom: 46px;
           left: 0px;
         }
-      }
-
-      .title {
-        text-align: center;
-        color: black;
-        font-weight: normal;
-        text-transform: uppercase;
-        margin: 0;
-      }
-
-      .subtitle {
-        font-weight: 300;
-        margin: 0;
-        width: 150px;
-        margin-top: 20px;
+        .subtitle {
+          width: 150px;
+        }
       }
     `}</style>
   </div>

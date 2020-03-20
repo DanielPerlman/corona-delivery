@@ -36,7 +36,6 @@ const Home = () => (
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        padding-bottom: 50px;
       }
 
       footer {
@@ -179,7 +178,7 @@ const Home = () => (
 
       @media screen and (max-width: 767px ) {
           html,body {
-              font-size:16px
+              font-size: 12px
           }
 
           h1 {

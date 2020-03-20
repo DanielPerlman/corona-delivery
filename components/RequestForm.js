@@ -20,22 +20,24 @@ const possibleShoppingItems = [
 ];
 
 const useStyles = makeStyles(theme => ({
-  textInput: {
-    marginTop: "10px",
-    height: '30px'
-  },
   textInputItem: {
     width: `calc(100% - 100px)`,
-    marginLeft: '10px'
+    marginLeft: '10px',
+    marginTop: '5px'
   },
   select: {
     height: '48px',
     width: '90px'
   },
   button: {
-    margin: 'auto'
+    margin: 'auto',
+    marginTop: '30px'
   },
   buttonAddItem: {
+    margin: '10px auto'
+  },
+  card: {
+    maxWidth: '1200px',
     margin: 'auto'
   }
 }));
@@ -43,7 +45,7 @@ const useStyles = makeStyles(theme => ({
 const RequestForm = props => {
   const classes = useStyles();
   const [orderItems, setOrderItems] = useState(['']);
-  const [possibleShoppingItemsChosen, choosePossibleItems] = useState({});
+  const [possibleShoppingItemsChosen, choosePossibleItems] = useState({0: ''});
 
   const handleChange = (value, i) => {
 
@@ -51,9 +53,36 @@ const RequestForm = props => {
   };
   return (
     <div className="request-form-container">
+      <h2 className="form-title">Make an order</h2>
       <Card className={classes.card}>
         <form className="request-info">
-            <h2>How can we help?</h2>
+            <div className="row">
+              {orderItems.map((orderItem, i) => {
+                return (<div>
+                  <Select
+                    value={possibleShoppingItemsChosen[i]}
+                    onChange={(event) => handleChange(event.target.value, i)}
+                    className={classes.select}
+                  >
+                    {possibleShoppingItems.map((possibleShoppingItem, index) => {
+                      return (<MenuItem value={possibleShoppingItem.name}>{possibleShoppingItem.name}</MenuItem>)
+                    })}
+                  </Select>
+                  
+                  <TextField
+                      className={`text-input-selector ${classes.textInputItem}`}
+                      name={`orderItem${i+1}`}
+                      key={`o${i}`}
+                      type="text"
+                      value={orderItem}
+                      label="Any item that is accessible"
+                      InputProps={{ classes: { input: classes.textInput } }}
+                  />
+                </div>);
+              })}
+              
+              <Button className={`button ${classes.buttonAddItem}`} color="primary" onClick={() => setOrderItems([...orderItems, ""])}> Add Items </Button>
+            </div>
             <TextField
                 className={classes.textInput}
                 name="email"
@@ -72,33 +101,7 @@ const RequestForm = props => {
                 type="text"
                 label="Phone"
             />
-            <div className="row">
-              <h3>Order Items</h3>
-              {orderItems.map((orderItem, i) => {
-                return (<div>
-                  <Select
-                    value={possibleShoppingItemsChosen[i]}
-                    onChange={(event) => handleChange(event.target.value, i)}
-                    className={classes.select}
-                  >
-                    {possibleShoppingItems.map((possibleShoppingItem, index) => {
-                      return (<MenuItem value={possibleShoppingItem.name}>{possibleShoppingItem.name}</MenuItem>)
-                    })}
-                  </Select>
-
-                  {possibleShoppingItemsChosen[i] == 'other' && <TextField
-                      className={classes.textInputItem}
-                      name={`orderItem${i+1}`}
-                      key={`o${i}`}
-                      type="text"
-                      value={orderItem}
-                      label="Any item that is accessible"
-                  />}
-                </div>);
-              })}
-              <Button className={classes.buttonAddItem} color="primary" onClick={() => setOrderItems([...orderItems, ""])}> Add Item </Button>
-            </div>
-            <Button className={classes.button} type="submit" color="primary"> Submit </Button>
+            <Button className={`button ${classes.button}`} type="submit" color="primary"> Submit </Button>
         </form>
       </Card>
 
@@ -107,7 +110,16 @@ const RequestForm = props => {
         .request-form-container {
           margin: auto;
           margin-top: 50px;
-          width: 90%;
+          width: 100%;
+          background: #d9e9eb;
+          padding: 100px;
+        }
+
+        .form-title {
+          width: 100%;
+          text-align: center;
+          font-weight: normal;
+          text-transform: uppercase;
         }
 
         .request-info {
@@ -125,6 +137,17 @@ const RequestForm = props => {
         .row h3 {
           text-align: center;
         }
+        .text-input-selector {
+          height: 48px !important;
+        }
+        @media screen and (max-width: 767px ) {
+          .request-form-container {
+            padding: 100px 10px;
+          }
+          .row {
+            margin: 5px 0;
+          }
+        }       
       `}</style>
     </div>
 )
