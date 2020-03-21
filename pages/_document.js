@@ -1,6 +1,7 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/core/styles';
+import '../node_modules/react-flippy/dist/styles.css';
 
 export default class MyDocument extends Document {
   render() {

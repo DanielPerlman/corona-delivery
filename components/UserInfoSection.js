@@ -13,8 +13,8 @@ const UserInfoSection = props => {
   const classes = useStyles();
   const [shouldShowDriverForm, setShouldShowDriverForm] = useState(false);
   const applyToDrive = (callback) => {
-    callback();
     return true;
+    callback();
   };
 
   return (
