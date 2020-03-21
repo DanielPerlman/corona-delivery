@@ -3,6 +3,7 @@ import Flippy, { FrontSide, BackSide } from 'react-flippy';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from "@material-ui/core/styles";
 import Button from '@material-ui/core/Button';
+import '../node_modules/react-flippy/dist/styles.css';
 
 const styles = theme => ({
   driverEmail: {
