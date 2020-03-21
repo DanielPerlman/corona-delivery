@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-
+import fetch from 'isomorphic-unfetch'
 import React, { useState } from 'react';
 
 const possibleShoppingItems = [
@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const RequestForm = props => {
+const RequestForm = React.forwardRef((props, ref) => {
   const classes = useStyles();
   const [orderItems, setOrderItems] = useState(['']);
   const [possibleShoppingItemsChosen, choosePossibleItems] = useState({0: ''});
@@ -51,11 +51,37 @@ const RequestForm = props => {
 
     choosePossibleItems({...possibleShoppingItemsChosen, [i]: value});
   };
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    let { email, location, phone } = event.target;
+    let body = {
+      email: email.value,
+      location: phone.value,
+      phone: phone.value,
+      accessible_item: orderItems.map((orderItem, i) => {
+        return { type: possibleShoppingItemsChosen[i], comment: orderItem }
+      })
+    };
+    /*
+    fetch('http://localhost:3001/v1/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    }).then( r => {
+      debugger;
+      open(r.headers.get('location'));
+      return r.json();
+    })*/
+  }
+
   return (
-    <div className="request-form-container">
+    <div className="request-form-container" ref={ref}>
       <h2 className="form-title">Make an order</h2>
       <Card className={classes.card}>
-        <form className="request-info">
+        <form className="request-info" onSubmit={submitForm}>
             <div className="row">
               {orderItems.map((orderItem, i) => {
                 return (<div>
@@ -63,15 +89,16 @@ const RequestForm = props => {
                     value={possibleShoppingItemsChosen[i]}
                     onChange={(event) => handleChange(event.target.value, i)}
                     className={classes.select}
+                    name={`accessible_item${i}.type`}
                   >
                     {possibleShoppingItems.map((possibleShoppingItem, index) => {
                       return (<MenuItem value={possibleShoppingItem.name}>{possibleShoppingItem.name}</MenuItem>)
                     })}
                   </Select>
-                  
+
                   <TextField
                       className={`text-input-selector ${classes.textInputItem}`}
-                      name={`orderItem${i+1}`}
+                      name={`accessible_item${i}.type`}
                       key={`o${i}`}
                       type="text"
                       value={orderItem}
@@ -80,7 +107,7 @@ const RequestForm = props => {
                   />
                 </div>);
               })}
-              
+
               <Button className={`button ${classes.buttonAddItem}`} color="primary" onClick={() => setOrderItems([...orderItems, ""])}> Add Items </Button>
             </div>
             <TextField
@@ -91,13 +118,13 @@ const RequestForm = props => {
             />
             <TextField
                 className={classes.textInput}
-                name="adress"
+                name="location"
                 type="adress"
                 label="Location"
             />
             <TextField
                 className={classes.textInput}
-                name="phoneNumber"
+                name="phone"
                 type="text"
                 label="Phone"
             />
@@ -147,10 +174,10 @@ const RequestForm = props => {
           .row {
             margin: 5px 0;
           }
-        }       
+        }
       `}</style>
     </div>
 )
-}
+})
 
 export default RequestForm

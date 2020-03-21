@@ -1,6 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import FlipCard from '~/components/FlipCard'
 
 const useStyles = makeStyles(theme => ({
 }));
@@ -10,6 +12,10 @@ const baseClass = "user-info";
 const UserInfoSection = props => {
   const classes = useStyles();
   const [shouldShowDriverForm, setShouldShowDriverForm] = useState(false);
+  const applyToDrive = (callback) => {
+    callback();
+    return true;
+  };
 
   return (
     <div className={`${baseClass}-container`}>
@@ -30,7 +36,9 @@ const UserInfoSection = props => {
           <img src="/assets/driver-image.jpg" />
           <div className="content-container">
             <h3>Are you a driver?</h3>
-            <Button className="button" color="primary" onClick={() => setShouldShowDriverForm(true)}>Get in touch!</Button>
+            <FlipCard
+              driverApplied={applyToDrive}
+              />
           </div>
         </div>
       </div>
@@ -147,7 +155,6 @@ const UserInfoSection = props => {
             display: flex;
             width: 60%;
           }
-
 
         }
       `}</style>
