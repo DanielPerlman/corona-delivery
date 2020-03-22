@@ -220,6 +220,12 @@ const Home = () => {
           box-sizing: border-box;
         }
 
+        .accordion h4 {
+          margin-bottom: 0;
+          margin-top: 0;
+          text-align: center;
+        }
+
         .button {
           background: #176574 !important;
           color: #f3d0da !important;

@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   textInputItem: {
     width: `calc(100% - 100px)`,
     marginLeft: '10px',
-    marginTop: '5px'
+    marginTop: '0px'
   },
   select: {
     height: '48px',
