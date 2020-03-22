@@ -131,6 +131,7 @@ const Accordion = props => {
           .accordion {
             width: 80%;
             margin: 0 auto;
+            margin-bottom: 20px;
           }
         }
       `}</style>

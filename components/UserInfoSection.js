@@ -28,6 +28,7 @@ const UserInfoSection = props => {
           <h3>"I need a delivery!"</h3>
           <Button className={`button ${classes.driverButton}`} color="primary" onClick={props.needsADelivery}>Place an order</Button>
         </div>
+        <p>*I'm not sure I can afford this</p>
         <Accordion
           backgroundColor="#a6c2c6"
           accordionSections={[
@@ -59,11 +60,19 @@ const UserInfoSection = props => {
               accordionSections={[
               {
                 summary: "Who am I helping?",
-                details: ""
+                details: `
+                  - Taxi drivers, who are currently left without any work or income because of the confinement \n
+                  - People hit hard by the crisis, in bad financial situations with no clear end in sight.
+                `
               },
               {
                 summary: "How can I help?",
-                details: ""
+                details: `
+                  By placing an order and paying for delivery, you are helping out a taxi driver that is otherwise left without work and income. \n
+                  By choosing to pay extra, you are helping those who need supplies, but can’t afford it at this moment. You can choose to pay as much as you wish! The average order is … sek (like 500?).  \n
+                  We will let you know when we use your donation for a delivery, so that you know when you have helped someone.
+
+                `
               }
             ]} />
           </div>
@@ -75,7 +84,7 @@ const UserInfoSection = props => {
             <FlipCard
               driverApplied={applyToDrive}
             />
-            <span>Are you a driver without work?</span>
+            <p>Are you a driver without work?</p>
           </div>
         </div>
       </div>
@@ -102,7 +111,7 @@ const UserInfoSection = props => {
 
         .${baseClass}-section.help img,
         .${baseClass}-section.driver img {
-          height: 70%;
+          width: 50%;
           position: absolute;
           top: 50%;
           transform: translate(-30%,-50%);
@@ -135,6 +144,13 @@ const UserInfoSection = props => {
         .${baseClass}-section.driver .content-container {
           float: right;
         }
+
+        .deliver p {
+          font-style: italic;
+          width: 80%;
+
+        }
+
 
         .${baseClass}-section.help,
         .${baseClass}-section.driver {
@@ -185,7 +201,7 @@ const UserInfoSection = props => {
           }
 
           .${baseClass}-section {
-            height 520px;
+            min-height: 520px;
           }
 
           .${baseClass}-section.help .content-container,
