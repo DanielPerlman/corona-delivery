@@ -27,6 +27,27 @@ const UserInfoSection = props => {
         <div className="content-container">
           <h3>"I need a delivery!"</h3>
           <Button className={`button ${classes.driverButton}`} color="primary" onClick={props.needsADelivery}>Place an order</Button>
+          <Accordion
+            backgroundColor="#a6c2c6"
+            accordionSections={[
+            {
+              summary: "I can't afford this!",
+              details: `
+                <p style="font-style:italic;">Coming soon; We need enough donations before we can start covering deliveries for those in need.</p>
+                <h4>For those who have lost their jobs or are uncertain about their financial situation \n because of the covid-19 crisis, we have options!</h4>
+              `,
+              cards: [
+                {
+                  title: 'Pay when you can:',
+                  text: "  Don't know when your next salary comes in? No problem, we allow for payment delays up to 2 months."
+                },
+                {
+                  title: 'Pay what you can:',
+                  text: "If you need to keep costs low for the next several months, we understand. Just let us know what you can pay, and donations will cover the rest"
+                }
+              ]
+            }
+          ]} />
         </div>
       </div>
       <div className={`${baseClass}`}>
@@ -48,7 +69,7 @@ const UserInfoSection = props => {
                 summary: "How can I help?",
                 details: `
                   By placing an order and paying for delivery, you are helping out a taxi driver that is otherwise left without work and income. \n
-                  By choosing to pay extra, you are helping those who need supplies, but can’t afford it at this moment. You can choose to pay as much as you wish! The average order is … sek (like 500?).  \n
+                  By choosing to pay extra, you are helping those who need supplies, but can’t afford it at this moment. You can choose to pay as much as you wish! \n
                   We will let you know when we use your donation for a delivery, so that you know when you have helped someone.
 
                 `
@@ -202,25 +223,5 @@ export default UserInfoSection
 TEMPORARY HIDE: 
 
 <p>*I'm not sure I can afford this</p>
-<Accordion
-  backgroundColor="#a6c2c6"
-  accordionSections={[
-  {
-    summary: "Don't worry, we're here to help!",
-    details: `
-      <h4>For those who have lost their jobs or are uncertain about their financial situation \n because of the covid-19 crisis, we have options!</h4>
-    `,
-    cards: [
-      {
-        title: 'Pay when you can:',
-        text: "  Don't know when your next salary comes in? No problem, we allow for payment delays up to 2 months."
-      },
-      {
-        title: 'Pay what you can:',
-        text: "If you need to keep costs low for the next several months, we understand. Just let us know what you can pay, and donations will cover the rest"
-      }
-    ]
-  }
-]} />
 
 */
