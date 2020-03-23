@@ -3,7 +3,16 @@ import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 import '../node_modules/react-flippy/dist/styles.css';
 
+import { Provider } from 'react-redux'
+import configureStore from '~/state/store/configureStore'
+import { verifyCredentials } from '~/state/actions/reduxTokenAuthConfig'
+
+
 export default class MyDocument extends Document {
+  componentDidMount() {
+    this.store = configureStore()
+    verifyCredentials(this.store)
+  }
   render() {
     return (
       <html lang="en">
@@ -14,7 +23,9 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
-          <Main />
+          <Provider store={this.store}>
+            <Main />
+          </Provider>
           <NextScript />
         </body>
       </html>
