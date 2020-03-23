@@ -28,27 +28,6 @@ const UserInfoSection = props => {
           <h3>"I need a delivery!"</h3>
           <Button className={`button ${classes.driverButton}`} color="primary" onClick={props.needsADelivery}>Place an order</Button>
         </div>
-        <p>*I'm not sure I can afford this</p>
-        <Accordion
-          backgroundColor="#a6c2c6"
-          accordionSections={[
-          {
-            summary: "Don't worry, we're here to help!",
-            details: `
-              <h4>For those who have lost their jobs or are uncertain about their financial situation \n because of the covid-19 crisis, we have options!</h4>
-            `,
-            cards: [
-              {
-                title: 'Pay when you can:',
-                text: "  Don't know when your next salary comes in? No problem, we allow for payment delays up to 2 months."
-              },
-              {
-                title: 'Pay what you can:',
-                text: "If you need to keep costs low for the next several months, we understand. Just let us know what you can pay, and donations will cover the rest"
-              }
-            ]
-          }
-        ]} />
       </div>
       <div className={`${baseClass}`}>
         <div className={`${baseClass}-section help`}>
@@ -120,6 +99,7 @@ const UserInfoSection = props => {
         .${baseClass}-section.help img {
           right: 0;
           transform: translate(30%,-50%);
+          z-index: 10;
         }
 
         .${baseClass}-section.driver img {
@@ -218,3 +198,29 @@ const UserInfoSection = props => {
 }
 
 export default UserInfoSection
+/*
+TEMPORARY HIDE: 
+
+<p>*I'm not sure I can afford this</p>
+<Accordion
+  backgroundColor="#a6c2c6"
+  accordionSections={[
+  {
+    summary: "Don't worry, we're here to help!",
+    details: `
+      <h4>For those who have lost their jobs or are uncertain about their financial situation \n because of the covid-19 crisis, we have options!</h4>
+    `,
+    cards: [
+      {
+        title: 'Pay when you can:',
+        text: "  Don't know when your next salary comes in? No problem, we allow for payment delays up to 2 months."
+      },
+      {
+        title: 'Pay what you can:',
+        text: "If you need to keep costs low for the next several months, we understand. Just let us know what you can pay, and donations will cover the rest"
+      }
+    ]
+  }
+]} />
+
+*/
