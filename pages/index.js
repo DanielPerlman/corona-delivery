@@ -227,11 +227,13 @@ class Home extends Component {
             text-align: center;
           }
 
-          .button {
+          .button.default {
             background: #176574 !important;
             color: #f3d0da !important;
             padding: 10px !important;
+            border-radius: 50px;
           }
+          
         `}</style>
       </div>
     );

@@ -7,7 +7,7 @@ import fetch from 'isomorphic-unfetch'
 import React, { useState } from 'react';
 import Input from '~/components/Input';
 import Select from 'react-select';
-
+import AddIcon from '@material-ui/icons/Add';
 const amountTypeOptions = [
   {
     value: 'units',
@@ -31,10 +31,6 @@ const useStyles = makeStyles(theme => ({
   textInputItem: {
     width: `calc(100% - 100px)`,
     marginLeft: '10px',
-    marginTop: '5px',
-    '@media (min-width: 600px)': {
-      marginTop: 0
-    }
   },
   select: {
     height: '48px',
@@ -42,10 +38,19 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     margin: 'auto',
-    marginTop: '30px'
+    marginTop: '30px',
+    width: '100%'
   },
   buttonAddItem: {
-    margin: '10px auto'
+    margin: '10px auto',
+    background: '#FFE9F0',
+    borderRadius: '50px',
+    width: '100%',
+    color: 'black',
+    height: '60px',
+    textTransform: 'none',
+    fontSize: '20px',
+    fontWeight: '400'
   },
   card: {
     maxWidth: '1200px',
@@ -161,7 +166,7 @@ const RequestForm = React.forwardRef((props, ref) => {
                 </div>);
               })}
 
-              <Button className={`button ${classes.buttonAddItem}`} color="primary" onClick={() => setOrderItems([...orderItems, ""])}> Add Items </Button>
+              <Button className={`button ${classes.buttonAddItem}`} color="primary" onClick={() => setOrderItems([...orderItems, ""])}> <AddIcon /> Add product </Button>
             </div>
             <div className="row step-2">
               <h3> 2. Delivery details </h3>
@@ -249,14 +254,17 @@ const RequestForm = React.forwardRef((props, ref) => {
                 type="number"
               />
             </div>
-            <Button className={`button ${classes.button}`} type="submit" color="primary"> Order now & pay at delivery </Button>
-            <span className="price-notice">You only pay for the retail price + delivery cost ({deliveryCost} kr)</span>
+            <div className="submit-section">
+              <Button className={`button default ${classes.button}`} type="submit" color="primary"> Order now & pay at delivery </Button>
+              <span className="price-notice">You only pay for the retail price + delivery cost ({deliveryCost} kr)</span>
+            </div>
         </form>
       </Card>
-      <style jsx global>{`
-
-      `}</style>
       <style jsx>{`
+        
+        .submit-section {
+          padding: 20px 40px;
+        }
 
         .price-notice {
           text-align: center;
@@ -268,8 +276,10 @@ const RequestForm = React.forwardRef((props, ref) => {
         .request-form-container {
           margin: auto;
           width: 100%;
-          margin-top: -20px;
+          margin-top: -50px;
           z-index: 10;
+          max-width: 1000px;
+          position: relative;
         }
 
         .request-info {
@@ -315,6 +325,7 @@ const RequestForm = React.forwardRef((props, ref) => {
 
         .order-item-row {
           display: flex;
+          margin-bottom: 10px;
         }
 
         @media screen and (max-width: 767px ) {
