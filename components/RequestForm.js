@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
   },
   buttonAddItem: {
     margin: '10px auto',
-    background: '#FFE9F0',
+    background: '#b3d4d8',
     borderRadius: '50px',
     width: '100%',
     color: 'black',
@@ -61,7 +61,8 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '1200px',
     margin: 'auto',
     boxShadow: '0px 15px 30px rgba(0, 0, 0, 0.1)',
-    borderRadius: 0
+    borderRadius: 0,
+    background: '#d9e9eb'
   },
   row2Input: {
     width: '48%'
@@ -118,7 +119,7 @@ const RequestForm = React.forwardRef((props, ref) => {
                     id={`amount.${i}`}
                     placeholder="Amount"
                     width="60px"
-                    widthMobile="60px"
+                    widthMobile ="60px"
                   />
                   <Select
                     className="selector-amount-type"

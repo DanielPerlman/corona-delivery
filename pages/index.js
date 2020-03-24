@@ -43,6 +43,7 @@ class Home extends Component {
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
+            padding-bottom: 40px;
           }
 
           footer {
@@ -228,10 +229,20 @@ class Home extends Component {
           }
 
           .button.default {
-            background: #176574 !important;
-            color: #f3d0da !important;
-            padding: 10px !important;
+            background: #b3d4d8 !important;
+            color: black;
+            padding: 10px;
             border-radius: 50px;
+            text-transform: none;
+            font-size: 20px;
+            font-weight: 400;
+          }
+          
+          @media screen and (max-width: 767px ) {
+            .button.default {
+              line-height: 40px;
+              padding: 0;
+              height: 40px;
           }
           
         `}</style>
