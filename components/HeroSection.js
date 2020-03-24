@@ -1,51 +1,76 @@
 
 const HeroSection = () => (
   <div className="hero-section">
-    <img src="/assets/hero-background.jpg" />
+    <div className="header-section">
+      <img className="logo" src="/assets/logohero.png"/>
+      <div className="phone-block">
+        <span className="prompt">Make a new order</span> <br />
+        <span className="phone">+46729760992</span>
+      </div>
+    </div>
     <div className="hero-text-section">
       <h2 className="title">
-        A Helping Ride
+        Order local goods and help your local taxi driver
       </h2>
       <h3 className="subtitle">
-        We're in this together
+        Quick deliveries, local drivers, and you get to help people yay
       </h3>
     </div>
     <style jsx>{`
       .hero-section {
         width: 100vw;
-        height: 70vh;
+        height: 600px;
         position: relative;
+        background: #FFC1D4;
       }
 
-      .hero-section img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 100%;
+      .hero-section .header-section {
         width: 100%;
+        padding: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .hero-section .phone-block {
+        height: 80%;
+        padding: 10px;
+        border: 2px solid black;
+        display: inline-block;
+        text-align: center;
+      }
+
+      .hero-section .phone-block .prompt {
+        margin-bottom: 1px;
+        display: inline-block;
+      }
+
+      .hero-section .phone-block .phone {
+        font-weight: bold;
+      }
+
+      .hero-section .logo {
+        display: inline-block;
+        margin-right: 20px;
+        height: 100%;
       }
 
       .hero-text-section {
-        position: absolute;
-        bottom: 100px;
-        left: 50px;
-        padding: 10px;
+        width: 600px;
+        text-align: center;
+        margin: auto;
+        margin-top: 100px;
       }
 
       .title {
-        text-align: center;
         color: black;
-        font-weight: normal;
-        text-transform: uppercase;
         margin: 0;
+        font-size: 48;
       }
 
       .subtitle {
         font-weight: 300;
         margin: 0;
-        width: 250px;
         margin-top: 20px;
       }
 
