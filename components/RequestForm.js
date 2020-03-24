@@ -71,32 +71,41 @@ const useStyles = makeStyles(theme => ({
 
 const RequestForm = React.forwardRef((props, ref) => {
   const classes = useStyles();
-  const [orderItems, setOrderItems] = useState(['']);
-  const [possibleShoppingItemsChosen, choosePossibleItems] = useState({0: ''});
+  const [orderItems, setOrderItems] = useState([{ amount_type: amountTypeOptions[0]}]);
   const [deliveryTime, setDeliveryTime] = useState(0);
   const [deliveryCost, setDeliveryCost] = useState(0);
   const [values, setValues] = useState({});
   
-  const handleChange = (value, i) => {
-
-    choosePossibleItems({...possibleShoppingItemsChosen, [i]: value});
+  const handleChange = (event, i) => {
+    let {value, name} = event.target;
+    let orderItemsEdited = orderItems;
+    orderItems[i][name] = value;
+    
+    setOrderItems(orderItemsEdited);
   };
-
+  
   const handleChangeInput = (event) => {
-    let { value, name } = event;
+    
+    let { value, name } = event.target;
     setValues({...values, [name]: value});
+  };
+  
+  const handleChangeInputSelect = (selection) => {
+    setValues({...values, delivery_time: selection});
+  };
+  
+  const handleChangeInputAmountType = (selection, i) => {
+    let orderItemsEdited = orderItems;
+    orderItems[i]['amount_type'] = selection;
+    
+    setOrderItems(orderItemsEdited);
   };
 
   const submitForm = (e) => {
     e.preventDefault();
-    let { email, location, phone } = event.target;
     let body = {
-      email: email.value,
-      location: phone.value,
-      phone: phone.value,
-      accessible_item: orderItems.map((orderItem, i) => {
-        return { type: possibleShoppingItemsChosen[i], comment: orderItem }
-      })
+      ...values,
+      order_items: orderItems
     };
   }
 
@@ -112,8 +121,8 @@ const RequestForm = React.forwardRef((props, ref) => {
 
                   <Input
                     value={orderItem.amount}
-                    onChange={handleChange}
-                    name={`amount.${i}`}
+                    onChange={(event) => handleChange(event, i)}
+                    name={`amount`}
                     id={`amount.${i}`}
                     placeholder="Amount"
                     width="60px"
@@ -121,8 +130,10 @@ const RequestForm = React.forwardRef((props, ref) => {
                   />
                   <Select
                     className="selector-amount-type"
-                    value={orderItem.amount_type || amountTypeOptions[0]}
-                    onChange={handleChange}
+                    value={orderItem.amount_type}
+                    defaultValue={amountTypeOptions[0]}
+                    onChange={(selection) => handleChangeInputAmountType(selection, i)}
+                    name="amount_type"
                     styles={
                       {
                         control: (base, state) => ({
@@ -151,8 +162,8 @@ const RequestForm = React.forwardRef((props, ref) => {
                   />
                   <Input
                     value={orderItem.product}
-                    onChange={handleChange}
-                    name={`product.${i}`}
+                    onChange={(event) => handleChange(event, i)}
+                    name={`product`}
                     id={`product.${i}`}
                     placeholder="Product name"
                     marginRight="5px"
@@ -163,8 +174,8 @@ const RequestForm = React.forwardRef((props, ref) => {
 
                   <Input
                     value={orderItem.comment}
-                    onChange={handleChange}
-                    name={`comment.${i}`}
+                    onChange={(event) => handleChange(event, i)}
+                    name={`comment`}
                     id={`comment.${i}`}
                     placeholder="Comments"
                     flex={true}
@@ -173,7 +184,7 @@ const RequestForm = React.forwardRef((props, ref) => {
                 </div>);
               })}
 
-              <Button className={`button ${classes.buttonAddItem}`} color="primary" onClick={() => setOrderItems([...orderItems, ""])}> <AddIcon /> Add product </Button>
+              <Button className={`button ${classes.buttonAddItem}`} color="primary" onClick={() => setOrderItems([...orderItems, { amount_type: amountTypeOptions[0]}])}> <AddIcon /> Add product </Button>
             </div>
             <div className="row step-2">
               <h3> 2. Delivery details </h3>
@@ -181,8 +192,8 @@ const RequestForm = React.forwardRef((props, ref) => {
                   <Input
                     value={values.fullname}
                     onChange={handleChangeInput}
-                    name="fullname"
-                    id="fullname"
+                    name="name"
+                    id="name"
                     label="Full name"
                     width="48%"
                     widthMobile="100%"
@@ -215,8 +226,8 @@ const RequestForm = React.forwardRef((props, ref) => {
                   <span >Delivery time</span>
                   <Select
                     className="selector-delivery"
-                    value={values.delivery_time}
-                    onChange={handleChangeInput}
+                    value={values.deliveryTime}
+                    onChange={handleChangeInputSelect}
                     styles={
                       {
                         control: (base, state) => ({
