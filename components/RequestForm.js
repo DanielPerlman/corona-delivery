@@ -23,7 +23,7 @@ const amountTypeOptions = [
   },
   {
     value: 'liters',
-    label: 'L'
+    label: 'l'
   },
 ];
 
@@ -64,7 +64,9 @@ const RequestForm = React.forwardRef((props, ref) => {
   const [possibleShoppingItemsChosen, choosePossibleItems] = useState({0: ''});
   const [deliveryTime, setDeliveryTime] = useState(0);
   const [deliveryCost, setDeliveryCost] = useState(0);
-  const [values, setValues] = useState({});
+  const [values, setValues] = useState({
+    donation_amount: 0
+  });
 
   const handleChange = (value, i) => {
 
@@ -116,6 +118,7 @@ const RequestForm = React.forwardRef((props, ref) => {
                         control: (base, state) => ({
                           ...base,
                           border: '2px solid black',
+                          boxShadow: state.isFocused ? 0 : 0,
                           borderLeft: '0'
                           // You can also use state.isFocused to conditionally style based on the focus state
                         }),
@@ -233,24 +236,34 @@ const RequestForm = React.forwardRef((props, ref) => {
             </div>
             <div className="row step-3">
               <h3> 3. Would you like to donate extra to help with delivery costs for others in need?</h3>
-              <span>
+              <p>
                 By choosing to pay extra – you are helping those who need supplies, but can’t afford it at this moment. You can choose to pay as much as you wish! We will let you know when we use your donation for a delivery, so that you know when you have helped someone.
-              </span>
-              <TextField
-                  className={classes.textInput}
-                  name="donation_amount"
-                  type="number"
-                  label="Free donation amount"
+              </p>
+              <Input
+                value={values.donation_amount}
+                onChange={handleChangeInput}
+                name="donation_amount"
+                id="donation_amount"
+                label="Free donation amount"
+                width="48%"
+                type="number"
               />
             </div>
             <Button className={`button ${classes.button}`} type="submit" color="primary"> Order now & pay at delivery </Button>
-            <span>You only pay for the retail price + delivery cost ({deliveryCost} kr)</span>
+            <span className="price-notice">You only pay for the retail price + delivery cost ({deliveryCost} kr)</span>
         </form>
       </Card>
       <style jsx global>{`
 
       `}</style>
       <style jsx>{`
+
+        .price-notice {
+          text-align: center;
+          margin-top: 15px;
+          margin-bottom: 20px;
+          display: block;
+        }
 
         .request-form-container {
           margin: auto;
@@ -287,6 +300,10 @@ const RequestForm = React.forwardRef((props, ref) => {
 
         .step-2 {
           padding-bottom: 80px;
+        }
+
+        .step-3 {
+          width: 60%;
         }
 
         .row h3 {

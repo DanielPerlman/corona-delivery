@@ -15,6 +15,7 @@ render() {
         span {
           display: block;
           margin-bottom: 5px;
+          font-weight: 500;
         }
 
         input {
