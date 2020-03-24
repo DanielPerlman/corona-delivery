@@ -50,7 +50,12 @@ const useStyles = makeStyles(theme => ({
     height: '60px',
     textTransform: 'none',
     fontSize: '20px',
-    fontWeight: '400'
+    fontWeight: '400',
+    '@media screen and (max-width: 767px )': {
+      lineHeight: '40px',
+      padding: 0,
+      height: '40px'
+    }
   },
   card: {
     maxWidth: '1200px',
@@ -112,7 +117,7 @@ const RequestForm = React.forwardRef((props, ref) => {
                     name={`amount.${i}`}
                     id={`amount.${i}`}
                     placeholder="Amount"
-                    width="120px"
+                    width="60px"
                   />
                   <Select
                     className="selector-amount-type"
@@ -144,7 +149,6 @@ const RequestForm = React.forwardRef((props, ref) => {
                     })}
                     options={amountTypeOptions}
                   />
-
                   <Input
                     value={orderItem.product}
                     onChange={handleChange}
@@ -152,8 +156,10 @@ const RequestForm = React.forwardRef((props, ref) => {
                     id={`product.${i}`}
                     placeholder="Product name"
                     marginRight="5px"
+                    marginRightMobile="0px"
                     flex={true}
                   />
+                  <div className="break"></div>
 
                   <Input
                     value={orderItem.comment}
@@ -162,6 +168,7 @@ const RequestForm = React.forwardRef((props, ref) => {
                     id={`comment.${i}`}
                     placeholder="Comments"
                     flex={true}
+                    class="newline-input"
                   />
                 </div>);
               })}
@@ -178,6 +185,8 @@ const RequestForm = React.forwardRef((props, ref) => {
                     id="fullname"
                     label="Full name"
                     width="48%"
+                    widthMobile="100%"
+                    marginTopMobile="5px"
                   />
 
                   <Input
@@ -187,6 +196,8 @@ const RequestForm = React.forwardRef((props, ref) => {
                     id="phone"
                     label="Phone number"
                     width="48%"
+                    widthMobile="100%"
+                    marginTopMobile="5px"
                   />
               </div>
               <div className="form-group">
@@ -197,9 +208,11 @@ const RequestForm = React.forwardRef((props, ref) => {
                   id="address"
                   label="Address"
                   width="48%"
+                  widthMobile="100%"
+                  marginTopMobile="5px"
                 />
                 <div className="selector">
-                  <span style={{ 'margin-bottom': '5px', 'display': 'block' }}>Delivery time</span>
+                  <span >Delivery time</span>
                   <Select
                     className="selector-delivery"
                     value={values.delivery_time}
@@ -303,6 +316,12 @@ const RequestForm = React.forwardRef((props, ref) => {
           width: 48%;
           position: relative;
         }
+        
+        .selector span {
+          font-weight: 500;
+          margin-bottom: 5px;
+          display: block;
+        }
 
         .row:nth-of-type(3) {
           border: none;
@@ -326,14 +345,33 @@ const RequestForm = React.forwardRef((props, ref) => {
         .order-item-row {
           display: flex;
           margin-bottom: 10px;
+          flex-wrap: wrap;
         }
 
         @media screen and (max-width: 767px ) {
           .request-form-container {
-            padding: 100px 10px;
+            padding: 0 10px;
           }
           .row {
             margin: 5px 0;
+          }
+          .break {
+            flex-basis: 100%;
+            height: 0;
+          }
+                  
+          .step-3,
+          .selector{
+            width: 100%;
+          }
+
+          .selector {
+            margin-top: 5px;
+          }
+        
+          
+          .form-group {
+            flex-wrap: wrap;
           }
         }
       `}</style>

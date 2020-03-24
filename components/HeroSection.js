@@ -75,21 +75,17 @@ const HeroSection = () => (
       }
 
       @media only screen and (max-width: 600px) {
+        .logo {
+          width: 50%;
+        }
+        
         .hero-section {
-          height: 50vh;
-          background: url(/assets/hero-background-mobile.jpg);
-          background-position: center;
-          background-size: cover;
+          height: 450px;
         }
-        .hero-section img {
-          display: none;
-        }
+        
         .hero-text-section {
-          bottom: 46px;
-          left: 0px;
-        }
-        .subtitle {
-          width: 150px;
+          width: 80%;
+          margin-top: 75px;
         }
       }
     `}</style>
