@@ -118,6 +118,7 @@ const RequestForm = React.forwardRef((props, ref) => {
                     id={`amount.${i}`}
                     placeholder="Amount"
                     width="60px"
+                    widthMobile="60px"
                   />
                   <Select
                     className="selector-amount-type"
@@ -168,7 +169,7 @@ const RequestForm = React.forwardRef((props, ref) => {
                     id={`comment.${i}`}
                     placeholder="Comments"
                     flex={true}
-                    class="newline-input"
+                    marginTopMobile="5px"
                   />
                 </div>);
               })}

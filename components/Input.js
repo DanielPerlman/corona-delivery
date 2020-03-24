@@ -3,13 +3,13 @@ import React, { Component } from "react";
 
 class Input extends Component {
 render() {
-
+  let { marginRight, marginRightMobile, marginTopMobile, widthMobile, width, className, label, flex, ...inputProps } = this.props;
   return (
-    <div className={`input ${this.props.class}`} >
-      { this.props.label &&
-        <span>{this.props.label}</span>
+    <div className={`input ${className}`} >
+      { label &&
+        <span>{label}</span>
       }
-      <input {...this.props} />
+      <input {...inputProps} />
       <style jsx>{`
 
         span {
@@ -26,21 +26,16 @@ render() {
         }
 
         .input {
-          width: ${this.props.width || 'auto'};
-          margin-right: ${this.props.marginRight || '0'};
-          ${this.props.flex ? `flex: 1`: ''}
-        }
-        
-        .newline-input {
-          margin-top: 5px;
+          width: ${width || 'auto'};
+          margin-right: ${marginRight || '0'};
+          ${flex ? `flex: 1`: ''}
         }
         
         @media screen and (max-width: 767px ) {
           .input {
-            margin-right: ${this.props.marginRightMobile || '0'} !important;
-            margin-top: ${this.props.marginTopMobile || '0'} !important;
-            width: ${this.props.widthMobile || 'auto'} !important;
-              
+            margin-right: ${marginRightMobile || '0'} !important;
+            margin-top: ${marginTopMobile || '0'} !important;
+            width: ${widthMobile || 'auto'} !important;      
           }
         }
 
