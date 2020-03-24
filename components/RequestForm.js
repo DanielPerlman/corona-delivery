@@ -75,10 +75,8 @@ const RequestForm = React.forwardRef((props, ref) => {
   const [possibleShoppingItemsChosen, choosePossibleItems] = useState({0: ''});
   const [deliveryTime, setDeliveryTime] = useState(0);
   const [deliveryCost, setDeliveryCost] = useState(0);
-  const [values, setValues] = useState({
-    donation_amount: 0
-  });
-
+  const [values, setValues] = useState({});
+  
   const handleChange = (value, i) => {
 
     choosePossibleItems({...possibleShoppingItemsChosen, [i]: value});
@@ -260,13 +258,14 @@ const RequestForm = React.forwardRef((props, ref) => {
                 By choosing to pay extra – you are helping those who need supplies, but can’t afford it at this moment. You can choose to pay as much as you wish! We will let you know when we use your donation for a delivery, so that you know when you have helped someone.
               </p>
               <Input
-                value={values.donation_amount}
+                value={values.donation}
                 onChange={handleChangeInput}
-                name="donation_amount"
-                id="donation_amount"
+                name="donation"
+                id="donation"
                 label="Free donation amount"
                 width="48%"
                 type="number"
+                defaultValue={0}
               />
             </div>
             <div className="submit-section">
