@@ -13,7 +13,7 @@ const HeroSection = () => (
         Order local goods and help your local taxi driver
       </h2>
       <h3 className="subtitle">
-        Quick deliveries, local drivers, and you get to help people yay
+        Quick deliveries, local drivers and helping others, all in one
       </h3>
     </div>
     <style jsx>{`
