@@ -22,15 +22,26 @@ class Home extends Component {
         <main>
           <HeroSection />
           <RequestForm ref={myRef}/>
+          <div className="bottom-section"> 
+            <h4>Your order makes a difference</h4>
+            <p>
+              By placing an order and paying for delivery, you are helping out a taxi driver that is otherwise left without work and income.
+            </p>
+          </div>
         </main>
 
         <footer>
+          <img className="logo" src="/assets/logofooter.png"/>
         </footer>
 
         <style jsx>{`
+          .bottom-section {
+            width: 300px;
+            text-align: center;
+            margin-top: 50px;
+          }
           .container {
             min-height: 100vh;
-            padding: 0 0.5rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -44,6 +55,7 @@ class Home extends Component {
             justify-content: flex-start;
             align-items: center;
             padding-bottom: 40px;
+            background: #F5F5F5;
           }
 
           footer {
@@ -53,6 +65,11 @@ class Home extends Component {
             display: flex;
             justify-content: center;
             align-items: center;
+            background: black;
+          }
+          
+          footer .logo {
+            float: left;
           }
 
           footer img {
