@@ -3,13 +3,14 @@ import React, { Component } from "react";
 
 class Input extends Component {
 render() {
-  let { marginRight, marginRightMobile, marginTopMobile, widthMobile, width, className, label, flex, ...inputProps } = this.props;
+  let { marginRight, marginRightMobile, marginTopMobile, widthMobile, width, className, label, flex, noRequire, ...inputProps } = this.props;
   return (
     <div className={`input ${className}`} >
       { label &&
         <span>{label}</span>
       }
-      <input {...inputProps} />
+      
+      {noRequire ? <input {...inputProps} /> : <input {...inputProps} required />} 
       <style jsx>{`
 
         span {

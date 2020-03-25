@@ -71,7 +71,7 @@ const useStyles = makeStyles(theme => ({
 
 const RequestForm = React.forwardRef((props, ref) => {
   const classes = useStyles();
-  const [orderItems, setOrderItems] = useState([{ amount_type: amountTypeOptions[0]}]);
+  const [orderItems, setOrderItems] = useState([{}]);
   const [deliveryTime, setDeliveryTime] = useState(0);
   const [deliveryCost, setDeliveryCost] = useState(0);
   const [values, setValues] = useState({});
@@ -118,7 +118,7 @@ const RequestForm = React.forwardRef((props, ref) => {
     
     body = JSON.stringify(body);
     
-    fetch(`http://coronadelivery.eu/api/v1/order`, {
+    fetch(`https://coronadelivery.eu/api/v1/order`, {
       method: 'post',
       body: body,
       headers: new Headers({
@@ -129,12 +129,10 @@ const RequestForm = React.forwardRef((props, ref) => {
     .then((res) => res.json())
     .then((res) => {
         console.log('Fetch signup result:',res)
-        debugger;
         setDone(true);
     })
     .catch((err)=>{
         console.error('Fetch signup ERROR:',err)
-        debugger;
 });
     
 
@@ -160,11 +158,12 @@ const RequestForm = React.forwardRef((props, ref) => {
                     widthMobile ="60px"
                   />
                   <Select
+                    required
                     className="selector-amount-type"
                     value={orderItem.amount_type}
-                    defaultValue={amountTypeOptions[0]}
                     onChange={(selection) => handleChangeInputAmountType(selection, i)}
                     name="amount_type"
+                    isSearchable={false}
                     styles={
                       {
                         control: (base, state) => ({
@@ -211,6 +210,7 @@ const RequestForm = React.forwardRef((props, ref) => {
                     placeholder="Comments"
                     flex={true}
                     marginTopMobile="5px"
+                    noRequire={true}
                   />
                 </div>);
               })}
@@ -256,9 +256,11 @@ const RequestForm = React.forwardRef((props, ref) => {
                 <div className="selector">
                   <span >Delivery time</span>
                   <Select
+                    required
                     className="selector-delivery"
                     value={values.deliveryTime}
                     onChange={handleChangeInputSelect}
+                    isSearchable={false}
                     styles={
                       {
                         control: (base, state) => ({
