@@ -123,18 +123,20 @@ const RequestForm = React.forwardRef((props, ref) => {
       body: body,
       headers: new Headers({
         'content-type': 'application/json; charset=utf-8',
-        'Access-Control-Allow-Origin':'*',
-        'Accept': 'application/json, application/xml, text/plain, text/html, *.*'
+        'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
       }),
     })
     .then((res) => res.json())
     .then((res) => {
         console.log('Fetch signup result:',res)
+        debugger;
         setDone(true);
     })
     .catch((err)=>{
         console.error('Fetch signup ERROR:',err)
-    });
+        debugger;
+});
+    
 
   }
 
