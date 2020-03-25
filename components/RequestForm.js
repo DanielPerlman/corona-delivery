@@ -123,6 +123,7 @@ const RequestForm = React.forwardRef((props, ref) => {
       body: body,
       headers: new Headers({
         'content-type': 'application/json; charset=utf-8',
+        'Access-Control-Allow-Origin':'*',
         'Accept': 'application/json, application/xml, text/plain, text/html, *.*'
       }),
     })
