@@ -215,7 +215,7 @@ const RequestForm = React.forwardRef((props, ref) => {
                 </div>);
               })}
 
-              <Button className={`button ${classes.buttonAddItem}`} color="primary" onClick={() => setOrderItems([...orderItems, { amount_type: amountTypeOptions[0]}])}> <AddIcon /> Add product </Button>
+              <Button className={`button ${classes.buttonAddItem}`} color="primary" onClick={() => setOrderItems([...orderItems, { }])}> <AddIcon /> Add product </Button>
             </div>
             <div className="row step-2">
               <h3> 2. Delivery details </h3>
