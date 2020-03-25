@@ -118,7 +118,7 @@ const RequestForm = React.forwardRef((props, ref) => {
     
     body = JSON.stringify(body);
     
-    fetch(`http://204.48.27.82/api/v1/order`, {
+    fetch(`http://coronadelivery.eu/api/v1/order`, {
       method: 'post',
       body: body,
       headers: new Headers({
