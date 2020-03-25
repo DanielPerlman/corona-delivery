@@ -75,6 +75,7 @@ const RequestForm = React.forwardRef((props, ref) => {
   const [deliveryTime, setDeliveryTime] = useState(0);
   const [deliveryCost, setDeliveryCost] = useState(0);
   const [values, setValues] = useState({});
+  const [done, setDone] = useState(false);
   
   const handleChange = (event, i) => {
     let {value, name} = event.target;
@@ -103,16 +104,43 @@ const RequestForm = React.forwardRef((props, ref) => {
 
   const submitForm = (e) => {
     e.preventDefault();
+    let valuesFormatted = values;
+    valuesFormatted.delivery_time = values.delivery_time.value;
     let body = {
-      ...values,
-      order_items: orderItems
+      ...valuesFormatted,
+      delivered: false,
+      delivering: false,
+      order_items: orderItems.map((orderItem) => {
+        orderItem.amount_type = orderItem.amount_type.value;
+        return orderItem;
+      })
     };
+    
+    body = JSON.stringify(body);
+    
+    fetch(`http://204.48.27.82/api/v1/order`, {
+      method: 'post',
+      body: body,
+      headers: new Headers({
+        'content-type': 'application/json; charset=utf-8',
+        'Accept': 'application/json, application/xml, text/plain, text/html, *.*'
+      }),
+    })
+    .then((res) => res.json())
+    .then((res) => {
+        console.log('Fetch signup result:',res)
+        setDone(true);
+    })
+    .catch((err)=>{
+        console.error('Fetch signup ERROR:',err)
+    });
+
   }
 
   return (
     <div className="request-form-container" ref={ref}>
       <Card className={classes.card}>
-        <form className="request-info" onSubmit={submitForm}>
+        {!done && <form className="request-info" onSubmit={submitForm}>
             <div className="row step-1">
               <h3> 1. Make a new order </h3>
 
@@ -283,7 +311,9 @@ const RequestForm = React.forwardRef((props, ref) => {
               <Button className={`button default ${classes.button}`} type="submit" color="primary"> Order now & pay at delivery </Button>
               <span className="price-notice">You only pay for the retail price + delivery cost ({deliveryCost} kr)</span>
             </div>
-        </form>
+        </form>}
+        
+        {done && <h4>We will be in touch shortly!</h4>}
       </Card>
       <style jsx>{`
         
