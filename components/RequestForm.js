@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from '@material-ui/core/MenuItem';
 import fetch from 'isomorphic-unfetch'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Input from '~/components/Input';
 import Select from 'react-select';
 import AddIcon from '@material-ui/icons/Add';
@@ -71,12 +71,20 @@ const useStyles = makeStyles(theme => ({
 
 const RequestForm = React.forwardRef((props, ref) => {
   const classes = useStyles();
-  const [orderItems, setOrderItems] = useState([{}]);
+  const [orderItems, setOrderItems] = useState([]);
   const [deliveryTime, setDeliveryTime] = useState(0);
   const [deliveryCost, setDeliveryCost] = useState(0);
   const [values, setValues] = useState({});
   const [done, setDone] = useState(false);
+  const [initial, setInitial] = useState(true);
   
+  useEffect(
+    () => {
+      if (initial) setOrderItems([{}]);
+      setInitial(false)
+    },
+    [initial]
+  )
   const handleChange = (event, i) => {
     let {value, name} = event.target;
     let orderItemsEdited = orderItems;
